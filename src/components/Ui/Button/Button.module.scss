@@ -1,0 +1,28 @@
+.button {
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* primary */
+.primary {
+  background: #5b7cff;
+  color: white;
+
+  :hover {
+    background: #4a6cf0;
+  }
+}
+
+/* secondary */
+.secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+
+  :hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+}

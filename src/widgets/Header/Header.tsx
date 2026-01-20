@@ -1,7 +1,11 @@
-import styles from "./Header.module.scss"
-import { Link } from "react-router-dom"
+import styles from "./Header.module.scss";
+import { Link } from "react-router-dom";
+import { useAppDispatch } from "@/app/store/hooks"
+import { openSearch } from "@/features/Search/modalSlice"
 
 export const Header = () => {
+  const dispatch = useAppDispatch();
+
   return (
     <header className={styles.header}>
       <Link to="/">VK Маруся</Link>
@@ -11,10 +15,10 @@ export const Header = () => {
         <Link to="/genres">Жанры</Link>
       </nav>
 
-      <div>
-        <button>Поиск</button>
+      <div className={styles.actions}>
+        <button onClick={() => dispatch(openSearch())}>Поиск</button>
         <button>Войти</button>
       </div>
     </header>
-  )
-}
+  );
+};
