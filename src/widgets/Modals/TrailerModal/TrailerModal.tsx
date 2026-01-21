@@ -8,7 +8,7 @@ export const TrailerModal = () => {
   const { isTrailerOpen, selectedMovie } = useAppSelector(
     state => state.trailer
   );
-
+  console.log(isTrailerOpen, selectedMovie);
   if (!isTrailerOpen || !selectedMovie?.trailerYoutubeId) return null;
 
   return (

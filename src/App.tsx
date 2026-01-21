@@ -11,7 +11,7 @@ const App = () => {
   return (
     <>
       <Header />
-
+    <main>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/genres" element={<GenresPage />} />
@@ -19,8 +19,8 @@ const App = () => {
         <Route path="/film/:id" element={<MoviePage />} />
         <Route path="/account" element={<AccountPage />} />
       </Routes>
-
-      <Modals />
+    </main> 
+    <Modals />
     </>
   );
 }
