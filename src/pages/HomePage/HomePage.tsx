@@ -1,4 +1,4 @@
-import { Hero } from "@/widgets/Hero/Hero";
+import { Hero } from "@/widgets/Hero";
 import "./HomePage.module.scss";
 import { MoviesRow } from "@/widgets/MoviesRow";
 

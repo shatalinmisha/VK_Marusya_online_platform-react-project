@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isSearchOpen: false,
-  isAuthOpen: false,
-  isTrailerOpen: false,
+    isSearchOpen: false,
 }
 
 const modalSlice = createSlice({

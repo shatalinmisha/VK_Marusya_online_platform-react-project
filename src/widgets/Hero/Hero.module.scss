@@ -1,0 +1,82 @@
+.trailerModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+.modalContent {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #000;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero {
+  position: relative;
+  min-height: 520px;
+  padding: 120px 64px 64px;
+  display: flex;
+  align-items: flex-end;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: #fff;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(8, 12, 24, 0.95) 0%,
+      rgba(8, 12, 24, 0.85) 35%,
+      rgba(8, 12, 24, 0.4) 60%,
+      rgba(8, 12, 24, 0) 100%
+    );
+  }
+}
+
+.info {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+
+  h1 {
+    font-size: 44px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #cfd3ff;
+    margin-bottom: 32px;
+    max-width: 560px;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}

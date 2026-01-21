@@ -1,25 +1,28 @@
 import type { FC } from "react";
 import type { Movie } from "@/features/Movies/types";
+import styles from "./MovieCard.module.scss";
 
 interface Props {
   movie: Movie;
   index?: number;
 }
 
-
 export const MovieCard: FC<Props> = ({ movie, index }) => {
   return (
-     <div>
-      {index !== undefined && <span>{index + 1}</span>}
+    <article className={styles.card}>
+      <div className={styles.poster}>
+        <img src={movie.posterUrl} alt={movie.title} />
 
-      <img
-        src={movie.posterUrl}
-        alt={movie.title}
-      />
+        {index !== undefined && <div className={styles.index}>{index + 1}</div>}
+        <div className={styles.rating}>⭐ {movie.tmdbRating}</div>
 
-      <h4>{movie.title}</h4>
-
-      <p>⭐ {movie.tmdbRating}</p>
-    </div>
+        <div className={styles.overlay}>
+          <div className={styles.title}>{movie.title}</div>
+          <div className={styles.meta}>
+            {movie.relaseYear} • {movie.genres}
+          </div>
+        </div>
+      </div>
+    </article>
   );
 };

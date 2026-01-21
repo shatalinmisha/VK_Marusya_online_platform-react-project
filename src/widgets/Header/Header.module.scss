@@ -1,0 +1,59 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 64px;
+  z-index: 10;
+
+  background: linear-gradient(
+    180deg,
+    rgba(8, 12, 24, 0.95) 0%,
+    rgba(8, 12, 24, 0.7) 60%,
+    rgba(8, 12, 24, 0) 100%
+  );
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+  }
+}
+
+nav {
+  display: flex;
+  gap: 24px;
+
+  a {
+    opacity: 0.8;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+
+  button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0.85;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
