@@ -16,6 +16,11 @@ export const fetchMoviesRow = createAsyncThunk<
   { key: string; movies: Movie[] },
   string
 >("movies/fetchRow", async (key) => {
+  if (key === "top10") {
+    const movies = await moviesApi.getTop10();
+    return { key, movies };
+  }
+
   const movies = await moviesApi.getByFilter(key);
   return { key, movies };
 });

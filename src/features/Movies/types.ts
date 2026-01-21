@@ -1,7 +1,6 @@
 export interface Movie {
   id: number;
   title: string;
-  poster: string;
-  rating: number;
-  year: number;
+  posterUrl: string;
+  tmdbRating: number;
 }

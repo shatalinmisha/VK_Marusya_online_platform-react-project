@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const MoviesRow = ({ title, query }: Props) => {
-  const dispatch = useAppDispatch();
+   const dispatch = useAppDispatch();
 
   const movies = useAppSelector(
     state => state.movies.rows[query]
@@ -21,10 +21,12 @@ export const MoviesRow = ({ title, query }: Props) => {
   );
 
   useEffect(() => {
-    dispatch(fetchMoviesRow(query));
-  }, [dispatch, query]);
+    if (!movies) {
+      dispatch(fetchMoviesRow(query));
+    }
+  }, [dispatch, query, movies]);
 
-  if (loading && !Array.isArray(movies)) {
+  if (loading && !movies) {
     return <div>Загрузка...</div>;
   }
 
@@ -35,10 +37,11 @@ export const MoviesRow = ({ title, query }: Props) => {
       <h2>{title}</h2>
 
       <div className={styles.list}>
-        {movies.map(movie => (
+        {movies.map((movie, index) => (
           <MovieCard
             key={movie.id}
             movie={movie}
+            index={index}
           />
         ))}
       </div>
