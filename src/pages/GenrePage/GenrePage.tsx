@@ -21,15 +21,17 @@ export const GenrePage = () => {
 
   return (
     <section className={styles.genre}>
-      <h1>{id}</h1>
+      <div className="container">
+        <h1 className={styles.genre__title}>{id}</h1>
 
-      <ul className={styles.list}>
-        {movies.map((movie, index) => (
-          <li key={movie.id}>
-            <MovieCard movie={movie} index={index} />
-          </li>
-        ))}
-      </ul>
+        <ul className={styles.genre__list}>
+          {movies.map((movie, index) => (
+            <li key={movie.id}>
+              <MovieCard movie={movie} index={index} />
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 };

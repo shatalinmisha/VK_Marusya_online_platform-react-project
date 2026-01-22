@@ -1,0 +1,33 @@
+.genres {
+  &__list {
+    list-style-type: none;
+    margin: 0 0 20px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px 64px;
+  }
+
+  &__item {
+    height: 200px;
+  }
+
+  &__link {
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 24px;
+    text-align: center;
+    justify-content: center;
+    height: 100%;
+    background: linear-gradient(0deg, rgb(152, 55, 219) 24%, rgb(61, 31, 232), rgb(30, 202, 230));
+    border-radius: 50px;
+  }
+
+  &__text {
+    justify-content: center;
+  }
+}

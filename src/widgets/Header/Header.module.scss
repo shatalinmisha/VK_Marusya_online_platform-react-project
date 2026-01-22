@@ -1,59 +1,101 @@
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 72px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 0 64px;
-  z-index: 10;
-
+  padding: 24px 0;
   background: linear-gradient(
     180deg,
     rgba(8, 12, 24, 0.95) 0%,
     rgba(8, 12, 24, 0.7) 60%,
     rgba(8, 12, 24, 0) 100%
   );
-
-  a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
   }
-}
 
-nav {
-  display: flex;
-  gap: 24px;
+  &__nav {
+    display: flex;
+    gap: 40px;
 
-  a {
-    opacity: 0.8;
+    &_text {
+      transition: opacity 0.2s;
+      font-size: 24px;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+        border-bottom: 2px solid #dc5dfc;
+      }
+    }
+  }
+
+  &__input {
+    width: 655px;
+    background-color: #393b3c;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 18px;
+    color: #ffffff;
+  }
+
+  &__btn_text {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
     transition: opacity 0.2s;
 
     &:hover {
       opacity: 1;
+      border-bottom: 2px solid #dc5dfc;
     }
   }
 }
 
-.actions {
-  display: flex;
-  gap: 12px;
+.search {
+  position: relative;
 
-  button {
-    background: transparent;
-    border: none;
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background: #0f0f0f;
+    z-index: 10;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    height: 52px;
+    gap: 12px;
+    padding: 0 16px;
+    text-decoration: none;
     color: #fff;
-    font-size: 14px;
-    cursor: pointer;
-    opacity: 0.85;
 
     &:hover {
-      opacity: 1;
+      background: #1c1c1c;
     }
   }
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  background-color: green;
+  font-weight: 700;
+  border-radius: 16px;
+
+  &__star {
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
+  }
+}
+
+.title {
+  flex: 1;
 }

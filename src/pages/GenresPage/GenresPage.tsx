@@ -17,17 +17,19 @@ export const GenresPage = () => {
 
   return (
     <section className={styles.genres}>
-      <h1>Жанры фильмов</h1>
+      <div className="container">
+        <h1>Жанры фильмов</h1>
 
-      <ul className={styles.list}>
-        {genres.map((genre) => (
-          <li key={genre}>
-            <Link to={`/genres/${genre}`}>
-              <span>{genre}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+        <ul className={styles.genres__list}>
+          {genres.map((genre) => (
+            <li key={genre} className={styles.genres__item}>
+              <Link to={`/genres/${genre}`} className={styles.genres__link}>
+                <p className={styles.genres__text}>{genre}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 };
