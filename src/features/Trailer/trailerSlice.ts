@@ -1,29 +1,28 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { Movie } from "@/features/Movies/types";
 
 type TrailerState = {
   isTrailerOpen: boolean;
-  selectedMovie: Movie | null;
+  movieId: number | null;
 };
 
 const initialState: TrailerState = {
   isTrailerOpen: false,
-  selectedMovie: null,
+  movieId: null,
 };
 
 const trailerSlice = createSlice({
-    name: "trailer",
-    initialState,
-    reducers: {
-    openTrailer(state, action: PayloadAction<Movie>) {
+  name: "trailer",
+  initialState,
+  reducers: {
+    openTrailer(state, action: PayloadAction<number>) {
       state.isTrailerOpen = true;
-      state.selectedMovie = action.payload;
+      state.movieId = action.payload;
     },
     closeTrailer(state) {
       state.isTrailerOpen = false;
-      state.selectedMovie = null;
+      state.movieId = null;
     },
-    },
+  },
 })
 
 export const { openTrailer, closeTrailer } = trailerSlice.actions

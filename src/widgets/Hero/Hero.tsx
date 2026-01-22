@@ -44,7 +44,7 @@ export const Hero = () => {
         <p>{movie.plot}</p>
 
         <div className={styles.actions}>
-          <Button onClick={() => dispatch(openTrailer(movie))}>Трейлер</Button>
+          <Button onClick={() => dispatch(openTrailer(movie.id))}>Трейлер</Button>
           <Button variant="secondary">О фильме</Button>
           <Button variant="secondary" onClick={fetchRandomMovie}>
             Случайный фильм
