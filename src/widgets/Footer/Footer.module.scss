@@ -1,0 +1,22 @@
+.footer {
+  padding: 24px 0;
+}
+
+.list {
+  display: flex;
+  justify-content: end;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  a {
+    display: inline-flex;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+}

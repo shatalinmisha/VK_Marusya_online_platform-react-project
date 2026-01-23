@@ -10,6 +10,7 @@ import { useAppDispatch } from "./app/store";
 import { useEffect } from "react";
 import { fetchProfile } from "./features/Auth/authSlice";
 import { ProtectedRoute } from "@/features/Auth/ProtectedRoute";
+import { Footer } from "./widgets/Footer";
 
 const App = () => {
 const dispatch = useAppDispatch();
@@ -35,6 +36,7 @@ useEffect(() => {
       </Routes>
     </main> 
     <Modals />
+    <Footer/>
     </>
   );
 }
