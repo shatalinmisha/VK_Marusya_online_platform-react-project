@@ -1,17 +1,17 @@
 
 import { useAppSelector } from "@/app/store";
+import { AuthModal } from "./AuthModal/AuthModal"
 import { TrailerModal } from "./TrailerModal/TrailerModal";
-// import { AuthModal } from "./AuthModal/AuthModal"
+
 
 
 export const Modals = () => {
-  const isTrailerOpen = useAppSelector(
-    state => state.trailer.isTrailerOpen
-  );
+  const { isAuthOpen } = useAppSelector(state => state.auth);
+  const isTrailerOpen = useAppSelector(state => state.trailer.isTrailerOpen);
 
   return (
     <>
-      {/* {isAuthOpen && <AuthModal />*/}
+      {isAuthOpen && <AuthModal />}
       {isTrailerOpen && <TrailerModal />} 
     </>
   );

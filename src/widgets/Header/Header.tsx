@@ -5,6 +5,7 @@ import { fetchSearchMovies } from "@/features/Search/searchSlice";
 import { ratingColor } from "@/components/utils/ratingColor";
 import logo from "@/assets/Marusya_logo-desc.png";
 import styles from "./Header.module.scss";
+import { openAuth } from "@/features/Auth/authSlice";
 
 export const Header = () => {
   const dispatch = useAppDispatch();
@@ -96,7 +97,7 @@ export const Header = () => {
             )}
           </div>
 
-          <button className={styles.header__btn_text}>Войти</button>
+          <button onClick={() => dispatch(openAuth("login"))} className={styles.header__btn_text}>Войти</button>
         </div>
       </div>
     </header>
