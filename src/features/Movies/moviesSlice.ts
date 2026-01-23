@@ -4,11 +4,13 @@ import { moviesApi } from "./moviesApi";
 
 interface MoviesState {
   rows: Record<string, Movie[]>;
+  current: Movie | null;
   loading: boolean;
 }
 
 const initialState: MoviesState = {
   rows: {},
+  current: null,
   loading: false,
 };
 
@@ -25,6 +27,13 @@ export const fetchMoviesRow = createAsyncThunk<
   return { key, movies };
 });
 
+export const fetchMovieById = createAsyncThunk<
+  Movie,
+  number
+>("movies/fetchById", async (id) => {
+  return await moviesApi.getById(id);
+});
+
 
 const moviesSlice = createSlice({
   name: "movies",
@@ -39,6 +48,14 @@ const moviesSlice = createSlice({
         state.loading = false;
         state.rows[action.payload.key] =
           action.payload.movies;
+      })
+      .addCase(fetchMovieById.pending, state => {
+        state.loading = true;
+        state.current = null;
+      })
+      .addCase(fetchMovieById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.current = action.payload;
       });
   },
 });

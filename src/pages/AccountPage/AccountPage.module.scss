@@ -53,3 +53,16 @@
 .empty {
   opacity: 0.6;
 }
+
+.favoritesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.favoritesItem {
+  width: 130px;
+}

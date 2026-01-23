@@ -1,10 +1,12 @@
 import { useAppDispatch, useAppSelector } from "@/app/store";
 import { logoutThunk } from "@/features/Auth/authSlice";
+import { MovieCard } from "@/entities/Movie/ui/MovieCard";
 import styles from "./AccountPage.module.scss";
 
 export const AccountPage = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
+  const favorites = useAppSelector((state) => state.favorites.movies);
 
   if (!user) return null;
 
@@ -18,8 +20,17 @@ export const AccountPage = () => {
           <div className={styles.section}>
             <h3 className={styles.sectionTitle}>Избранные фильмы</h3>
 
-            {/* позже сюда подключим список */}
-            <p className={styles.empty}>У вас пока нет избранных фильмов</p>
+            {favorites.length === 0 ? (
+              <p className={styles.empty}>У вас пока нет избранных фильмов</p>
+            ) : (
+              <ul className={styles.favoritesList}>
+                {favorites.map((movie) => (
+                  <li className={styles.favoritesItem} key={movie.id}>
+                    <MovieCard movie={movie} />
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           {/* ===== Настройки аккаунта ===== */}

@@ -5,12 +5,14 @@ import { moviesApi } from "@/features/Movies/moviesApi";
 import type { Movie } from "@/features/Movies/types";
 import { useAppDispatch } from "@/app/store";
 import { openTrailer } from "@/features/Trailer/trailerSlice";
+import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const fetchRandomMovie = async () => {
     try {
@@ -44,8 +46,15 @@ export const Hero = () => {
         <p>{movie.plot}</p>
 
         <div className={styles.actions}>
-          <Button onClick={() => dispatch(openTrailer(movie.id))}>Трейлер</Button>
-          <Button variant="secondary">О фильме</Button>
+          <Button onClick={() => dispatch(openTrailer(movie.id))}>
+            Трейлер
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => navigate(`/movie/${movie.id}`)}
+          >
+            О фильме
+          </Button>
           <Button variant="secondary" onClick={fetchRandomMovie}>
             Случайный фильм
           </Button>

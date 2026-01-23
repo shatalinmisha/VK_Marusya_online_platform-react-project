@@ -1,0 +1,172 @@
+.movie {
+  padding: 40px 0;
+  color: #fff;
+  background-color: #0f0f0f;
+}
+
+/* ===== HERO ===== */
+.hero {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+/* Левая колонка */
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Первая строка */
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  color: #bdbdbd;
+
+  span {
+    white-space: nowrap;
+  }
+}
+
+.rating {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #000;
+}
+
+/* Название */
+.title {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Описание */
+.plot {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #d1d1d1;
+  max-width: 700px;
+}
+
+/* Кнопки */
+.actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+/* Правая колонка */
+.right {
+  width: 680px;
+  height: 550px;
+  flex-shrink: 0;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+}
+
+/* ===== ABOUT ===== */
+.about {
+  h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+}
+
+/* Список характеристик */
+.info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 600px;
+
+  li {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    span:first-child {
+      color: #9e9e9e;
+      font-size: 14px;
+    }
+
+    span:last-child {
+      font-size: 15px;
+      font-weight: 500;
+    }
+  }
+}
+
+.favorite {
+  margin-top: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #555;
+  color: #fff;
+  transition: background 0.3s;
+
+  &.active {
+    background-color: #ff4c4c;
+    color: #fff;
+  }
+
+  &:hover {
+    background-color: #777;
+  }
+}
+
+.favorite {
+  cursor: pointer;
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+
+/* ===== Адаптив ===== */
+@media (max-width: 1200px) {
+  .hero {
+    flex-direction: column;
+  }
+
+  .right {
+    width: 100%;
+    height: auto;
+
+    img {
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 32px;
+  }
+
+  .plot {
+    font-size: 15px;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

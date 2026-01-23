@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import type { Movie } from "@/features/Movies/types";
+import { Link } from "react-router-dom";
 import styles from "./MovieCard.module.scss";
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 
 export const MovieCard: FC<Props> = ({ movie, index }) => {
   return (
-    <article className={styles.card}>
+    <Link to={`/movie/${movie.id}`} className={styles.card}>
       <div className={styles.poster}>
         <img src={movie.posterUrl} alt={movie.title} />
 
@@ -19,10 +20,10 @@ export const MovieCard: FC<Props> = ({ movie, index }) => {
         <div className={styles.overlay}>
           <div className={styles.title}>{movie.title}</div>
           <div className={styles.meta}>
-            {movie.relaseYear} • {movie.genres}
+            {movie.relaseYear} • {movie.genres.join(", ")}
           </div>
         </div>
       </div>
-    </article>
+    </Link>
   );
 };

@@ -5,6 +5,7 @@ import authReducer from "@/features/Auth/authSlice"
 import trailerReducer from "@/features/Trailer/trailerSlice"
 import genresReducer from "@/features/Genres/genresSlice";
 import searchReducer from "@/features/Search/searchSlice";
+import favoritesReducer from "@/features/Favorites/favoritesSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     auth: authReducer,
     trailer: trailerReducer,
     search: searchReducer,
+    favorites: favoritesReducer,
   },
 });
