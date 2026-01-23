@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { useAppDispatch } from "@/app/store";
+import { useAppDispatch, useAppSelector } from "@/app/store";
 import { register } from "@/features/Auth/authSlice";
 import logo from "@/assets/marusya_modal.png";
 import styles from "../LoginForm/LoginForm.module.scss";
 
 export const RegisterForm = () => {
   const dispatch = useAppDispatch();
+
+  const { error, status } = useAppSelector(state => state.auth);
 
   const [form, setForm] = useState({
     email: "",
@@ -36,6 +38,8 @@ export const RegisterForm = () => {
         placeholder="Пароль"
         onChange={changeHandler}
       />
+
+      {error && <p className={styles.error}>{error}</p>}
 
       <button type="submit">Создать аккаунт</button>
     </form>

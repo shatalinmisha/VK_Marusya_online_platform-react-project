@@ -1,0 +1,55 @@
+.account {
+  padding: 40px 0;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 32px;
+}
+
+.sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.section {
+  background: #1c1c1c;
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.label {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.value {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.logout {
+  margin-top: 24px;
+  background: #e50914;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.empty {
+  opacity: 0.6;
+}

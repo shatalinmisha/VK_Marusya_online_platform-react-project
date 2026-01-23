@@ -52,6 +52,23 @@
       border-bottom: 2px solid #dc5dfc;
     }
   }
+
+  &__user {
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    border-bottom: 2px solid transparent;
+    transition: opacity 0.2s;
+
+    &:hover {
+      
+      border-bottom: 2px solid #dc5dfc;
+    }
+  }
 }
 
 .search {

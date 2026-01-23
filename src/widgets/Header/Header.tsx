@@ -12,6 +12,8 @@ export const Header = () => {
   const { results, loading } = useAppSelector((state) => state.search);
   const [query, setQuery] = useState("");
 
+  const user = useAppSelector((state) => state.auth.user);
+
   // debounce
   useEffect(() => {
     if (!query) return;
@@ -85,7 +87,9 @@ export const Header = () => {
                           />
                         </svg>
                       </span>
-                      <span className={styles.rating__number}>{movie.tmdbRating}</span>
+                      <span className={styles.rating__number}>
+                        {movie.tmdbRating}
+                      </span>
                     </div>
                     <span>{movie.relaseYear}</span>
                     <span className={styles.title}>{movie.title}</span>
@@ -97,7 +101,18 @@ export const Header = () => {
             )}
           </div>
 
-          <button onClick={() => dispatch(openAuth("login"))} className={styles.header__btn_text}>Войти</button>
+          {user ? (
+            <Link to="/account" className={styles.header__user}>
+              {user.name}
+            </Link>
+          ) : (
+            <button
+              onClick={() => dispatch(openAuth("login"))}
+              className={styles.header__btn_text}
+            >
+              Войти
+            </button>
+          )}
         </div>
       </div>
     </header>

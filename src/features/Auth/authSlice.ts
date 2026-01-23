@@ -7,6 +7,7 @@ interface AuthState {
     mode: "login" | "register";
     user: User | null;
     status: "idle" | "loading" | "error";
+    error: string | null;
 }
 
 const initialState: AuthState = {
@@ -14,13 +15,25 @@ const initialState: AuthState = {
     mode: "login",
     user: null,
     status: "idle",
+    error: null,
 };
+
+export const logoutThunk = createAsyncThunk(
+    "auth/logout",
+    async () => {
+        await authApi.logout();
+    }
+);
 
 export const login = createAsyncThunk(
     "auth/login",
-    async (data: { email: string; password: string }) => {
-        await authApi.login(data);
-        return await authApi.getProfile();
+    async (data: { email: string; password: string }, { rejectWithValue }) => {
+        try {
+            await authApi.login(data);
+            return await authApi.getProfile();
+        } catch (error: any) {
+            return rejectWithValue(error.response?.status);
+        }
     }
 );
 
@@ -31,9 +44,22 @@ export const register = createAsyncThunk(
         password: string;
         name: string;
         surname: string;
-    }) => {
-        await authApi.register(data);
-        return await authApi.getProfile();
+    },
+        { rejectWithValue }
+    ) => {
+        try {
+            await authApi.register(data);
+            // Логинимся
+            await authApi.login({
+                email: data.email,
+                password: data.password,
+            });
+
+            // Получаем профиль
+            return await authApi.getProfile();
+        } catch (error: any) {
+            return rejectWithValue(error.response?.status);
+        }
     }
 );
 
@@ -60,20 +86,42 @@ const authSlice = createSlice({
         },
     },
     extraReducers: builder => {
-    builder
-      .addCase(login.pending, state => {
-        state.status = "loading";
-      })
-      .addCase(login.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.user = action.payload;
-        state.isAuthOpen = false;
-      })
-      .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isAuthOpen = false;
-      });
-  },
+        builder
+            .addCase(fetchProfile.rejected, state => {
+                state.user = null;
+            })
+            .addCase(logoutThunk.fulfilled, state => {
+                state.user = null;
+            })
+            .addCase(login.pending, state => {
+                state.status = "loading";
+            })
+            .addCase(login.fulfilled, (state, action) => {
+                state.status = "idle";
+                state.user = action.payload;
+                state.isAuthOpen = false;
+            })
+            .addCase(login.rejected, (state, action) => {
+                state.status = "error";
+                state.error =
+                    action.payload === 400
+                        ? "Неверный логин или пароль"
+                        : "Ошибка авторизации";
+            })
+            .addCase(register.fulfilled, (state, action) => {
+                state.user = action.payload;
+                state.isAuthOpen = false;
+            })
+            .addCase(register.rejected, (state, action) => {
+                state.status = "error";
+
+                if (action.payload === 409) {
+                    state.error = "Пользователь с таким email уже существует";
+                } else {
+                    state.error = "Ошибка регистрации";
+                }
+            });
+    },
 });
 
 export const { openAuth, closeAuth, logout } = authSlice.actions;
