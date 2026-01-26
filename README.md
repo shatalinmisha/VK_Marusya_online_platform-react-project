@@ -1,73 +1,201 @@
-# React + TypeScript + Vite
+# VK Marusya — онлайн-платформа для поиска фильмов 🎬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend-приложение — бета-версия стримингового сервиса **VK Маруся**.
 
-Currently, two official plugins are available:
+Проект реализован с использованием React и TypeScript и демонстрирует работу
+с авторизацией, защищёнными маршрутами, асинхронными запросами и управлением
+глобальным состоянием.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Приложение позволяет искать фильмы, просматривать подробную информацию,
+смотреть трейлеры и добавлять фильмы в избранное (для авторизованных пользователей).
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🚀 Функциональность
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🔍 Поиск фильмов по названию
+- 🎲 Получение случайного фильма на главной странице
+- ⭐ Просмотр топ-10 фильмов по IMDb
+- 🎭 Просмотр списка жанров и фильмов по жанру
+- 📄 Детальная страница фильма:
+  - описание
+  - рейтинг
+  - трейлер
+  - добавление / удаление из избранного
+- ❤️ Избранные фильмы (только для авторизованных пользователей)
+- 👤 Регистрация и авторизация пользователей
+- 🔐 Защищённые маршруты (страница аккаунта)
+- 💬 Модальные окна:
+  - авторизация / регистрация
+  - поиск
+  - просмотр трейлера
+- 🔄 Сохранение сессии при перезагрузке страницы
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠 Стек технологий
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **React 18**
+- **TypeScript**
+- **Redux Toolkit**
+- **React Router**
+- **Axios**
+- **SCSS Modules**
+
+---
+
+## 🔑 Key technical highlights
+
+- Feature-based архитектура
+- Redux Toolkit + async thunks
+- Авторизация на основе cookie (session-based auth)
+- Защищённые маршруты (Protected Routes)
+- Централизованный слой работы с API (Axios)
+- Полная типизация данных (TypeScript)
+- Модульные SCSS-стили
+
+---
+
+## 🧩 Архитектура проекта
+
+Проект организован по принципам **feature-based архитектуры** с чётким разделением ответственности.
+
+### 📁 Структура `src`
+```
+src/
+├── api/
+│ └── api.ts # Конфигурация Axios и работа с API
+│
+├── app/
+│ ├── providers/
+│ │ └── StoreProvider.tsx # Провайдер Redux Store
+│ └── store/
+│ ├── store.ts # Конфигурация Redux Store
+│ ├── hooks.ts # Типизированные хуки useAppDispatch / useAppSelector
+│ └── index.ts # Экспорты store и типов
+│
+├── assets/ # Изображения и статические ресурсы
+│
+├── components/
+│ └── Ui/
+│ └── Button/
+│ ├── Button.tsx
+│ └── Button.module.scss
+│ # Переиспользуемые UI-компоненты
+│
+├── utils/
+│ └── ratingColor.ts # Вспомогательные утилиты
+│
+├── entities/
+│ └── Movie/
+│ ├── MovieCard.tsx
+│ └── MovieCard.module.scss
+│ # Бизнес-сущности приложения
+│
+├── features/
+│ ├── Auth/ # Авторизация и регистрация
+│ ├── Favorites/ # Работа с избранными фильмами
+│ ├── Genres/ # Жанры
+│ ├── Movies/ # Фильмы и списки фильмов
+│ ├── Search/ # Поиск фильмов
+│ └── Trailer/ # Загрузка и отображение трейлеров
+│ # Redux-слайсы и бизнес-логика
+│
+├── pages/
+│ ├── HomePage/ # Главная страница
+│ ├── GenresPage/ # Список жанров
+│ ├── GenrePage/ # Фильмы по жанру
+│ ├── MoviePage/ # Страница фильма
+│ └── AccountPage/ # Страница аккаунта
+│
+├── widgets/
+│ ├── Header/ # Шапка сайта
+│ ├── Footer/ # Подвал
+│ ├── Hero/ # Блок случайного фильма
+│ ├── MoviesRow/ # Горизонтальные списки фильмов
+│ ├── LoginForm/ # Форма входа
+│ ├── RegisterForm/ # Форма регистрации
+│ └── Modals/ # Все модальные окна
+│
+├── fonts/ # Шрифты
+│
+├── App.tsx # Корневой компонент приложения
+
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+В проекте используется:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- типизация данных API
+- асинхронные thunk-экшены
+- единый слой для работы с API
+- модульные стили
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+
+### 🧠 Архитектурные принципы
+
+- Разделение UI, бизнес-логики и инфраструктуры
+- Redux Toolkit для управления состоянием
+- Асинхронные запросы через `createAsyncThunk`
+- Типизация данных API
+- Переиспользуемые компоненты
+- Модульные стили (SCSS Modules)
+- Чистый и читаемый код
+
+---
+
+## 🌐 Работа с API
+
+Используется API:
+
+https://cinemaguide.skillbox.cc/docs/
+
+
+Особенности:
+- авторизация через cookie
+- запросы с `withCredentials: true`
+- сохранение сессии при обновлении страницы
+- корректная обработка ошибок API
+
+---
+
+## ▶️ Запуск проекта локально
+
+1. Клонировать репозиторий:
+```bash
+git clone https://github.com/shatalinmisha/VK_Marusya_online_platform-react-project.git
 ```
+
+2. Установить зависимости:
+```bash
+npm install
+```
+
+3. Запустить проект:
+```bash
+npm run dev
+```
+
+Приложение будет доступно по адресу:
+ ```
+http://localhost:5173
+```
+
+📌 Дополнительно реализовано
+
+- прелоадеры для асинхронных запросов
+- защита маршрутов
+- сохранение состояния пользователя
+- модульная архитектура
+- единый слой работы с API
+
+---
+
+## 👨‍💻 Автор
+
+**Михаил Шаталин**  
+Frontend Developer (React / TypeScript)
+
+GitHub: https://github.com/shatalinmisha
